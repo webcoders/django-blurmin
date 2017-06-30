@@ -1,0 +1,199 @@
+{% load ui i18n %}
+{% block controller %}
+    <div class="{{ view_name }}Container" ng-controller="gridController as data" ui-view-name="{{ view_name }}" url="{{ view_url }}"
+         ui-paginated-by="{{ paginator.per_page }}"
+         ui-page-size="{{ view.paginate_by|default:100 }}" row_id_field_name="{{ row_id_field_name }}" {% block controller_extra_attrs %}{% endblock %}>
+{% endblock %}
+{% block controller-body %}
+    <div class="grid-{{ view_name }}">
+        {% block filter_list %}
+            {% if list_filter or search_fields %}
+                <div class="input-group btn-group">
+                    <div class="input-group-btn search-panel" ng-class="{'dropup': showFilters{{ view_name }}}">
+                        {% block tool_bar_left %}
+                        {% endblock %}
+                        {% if list_filter %}
+                            <button type="button" class="btn btn-default btn-filter"
+                                    ng-click="showFilters{{ view_name }} = ! showFilters{{ view_name }}">
+				<span class="glyphicon glyphicon-filter"></span>
+                                <span id="search_concept">{% trans 'Filter' %}</span> <span class="caret"></span>
+                            </button>
+                        {% endif %}
+                    </div>
+                    {% if search_fields %}
+                        <input class="form-control" enter-pressed="getData(1)" name="search"
+                               placeholder="{% trans 'Search term...' %}"
+                               type="text">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default search-btn" type="button" ng-click="getData(1)"><span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    {% endif %}
+                </div>
+                {% if list_filter %}
+                    <div class="panel panel-default bootstrap-panel" ng-show="showFilters{{ view_name }}">
+                        <div class="panel-body">
+                            <form name="{{ view_name }}FilterForm" ng-submit="getData(1)">
+                                <div ng-repeat="filter in data.filters" style="padding: 2px">
+                                    <div class="btn-group">
+                                        <button type="button" ng-click="data.filters.splice($index,1)"
+                                                title="Remove filter"
+                                                class="btn btn-danger btn-icon ion-minus-round">
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" uib-dropdown>
+                                        <button type="button" class="btn btn-default select-field-btn"
+                                                uib-dropdown-toggle>
+                                            {$ filter.field.verbose_name || 'Select Field' $} <span
+                                                class="caret"></span>
+                                        </button>
+                                        <ul ng-model="field.field" class="dropdown-menu" uib-dropdown-menu role="menu"
+                                            aria-labelledby="single-button">
+                                            <li ng-repeat="field in data.filterGetFieldList()" role="menuitem"><a
+                                                    ng-click="filter.field = field; filter.condition = null" href>{$
+                                                field.verbose_name $}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group" uib-dropdown ng-show="filter.field">
+                                        <button type="button" class="btn btn-default select-cond-btn"
+                                                uib-dropdown-toggle>
+                                            {$ filter.condition.label || filter.condition.name || 'Select condition' $}
+                                            <span
+                                                    class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" uib-dropdown-menu role="menu"
+                                            aria-labelledby="single-button">
+                                            <li ng-repeat="condition in filter.field.conditions">
+                                                <a href ng-click="filter.condition = condition;">{$ condition.label ||
+                                                    condition.name
+                                                    $}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-form btn-group form-inline"
+                                         ng-include="filter.condition.ui"></div>
+                                </div>
+                                <div class="filter-apply">
+                                    <button type="button" ng-show="data.filters.length!=data.list_filter.length"
+                                            title="Add Filter"
+                                            ng-click="data.filters.push({})" style="margin-left: 2px;"
+                                            class="btn btn-success btn-icon ion-plus-round btn-no-effect">
+                                    </button>
+                                    <span ng-show="data.filters.length==0">Click to the button to add filter</span>
+                                    <button type="submit" ng-show="data.filters.length>0" class="btn btn-primary"
+                                            title="Apply filter">Apply
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+        <div class="horizontal-scroll">
+            <table id="{{ view_name }}Table" class="{% block table_class %}table table-striped table-hover{% endblock %}">
+                <thead>
+                <tr>
+                    {% if row_selector %}
+                        <th>
+                            <input type="checkbox" ng-model="data.row_selector.all" ng-change="data.selectAll()"/>
+                        </th>
+                    {% endif %}
+                    {% for field in list_display %}
+                        <th>{{ field_labels|get_item:field }}
+                            {% if field in list_order %}
+                                <span uib-dropdown>
+                                <a ng-show="!data.getSortNumber('{{ field }}')" href class="sort" uib-dropdown-toggle>
+                                    <span class="caret"></span>&nbsp;
+                                </a>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem">
+                                        <a href
+                                           ng-click="data.setSort('{{ field }}')"
+                                           class="glyphicon glyphicon-sort-by-attributes-alt"><span>&nbsp;Ascending</span></a>
+                                        <a href
+                                           ng-click="data.setSort('-{{ field }}')"
+                                           class="glyphicon glyphicon-sort-by-attributes"><span>&nbsp;Descending</span></a>
+                                    </li>
+                                </ul>
+                            </span>
+                                <a href style="cursor: text">&nbsp;
+                                    <span style="font-weight: bold"
+                                          ng-class="{'hidden': !data.sortElemActive('{{ field }}') && !data.sortElemActive('-{{ field }}')}">{$ data.getSortNumber('{{ field }}') $}</span>&nbsp;
+                                </a>
+                                <a href ng-click="data.changeSort('{{ field }}')">
+                                    <span ng-class="{'glyphicon glyphicon-arrow-up': data.sortElemActive('{{ field }}'), 'glyphicon glyphicon-arrow-down': data.sortElemActive('-{{ field }}')}"></span>
+                                </a>
+                                <a href ng-click="data.removeSort('{{ field }}')"><span
+                                        class="glyphicon glyphicon-remove"
+                                        ng-show="data.getSortNumber('{{ field }}')"></span></a>
+                            {% endif %}
+                        </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-show="data.object_list.length <= 0">
+                    <td colspan="{{ list_display|length }}" style="text-align:center;">No items</td>
+                </tr>
+                {% block rows %}
+                    <tr ng-repeat="object in data.object_list">
+                        {% block row_selector %}
+                            {% if row_selector %}
+                            <td>
+                                <input type="checkbox" ng-change="data.updateSelected(object['{{ row_id_field_name }}'])" ng-model="data.row_selector.id[object['{{ row_id_field_name }}']]" />
+{#                                       ng-checked="data.row_selector.id[object['{{ row_id_field_name }}']]"/>#}
+                            </td>
+                            {% endif %}
+                        {% endblock %}
+                        {% block cells %}
+                            {% for field in list_display %}
+                                {% block cell %}
+                                    <td bind-html-compile="object.{{ field }}"/>
+                                {% endblock %}
+                            {% endfor %}
+                        {% endblock %}
+                    </tr>
+                {% endblock %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% if page_obj.number %}
+        <div>
+            <div class="pagination pull-left">
+                <div class="form-group select-page-size-wrap ">
+                    <label>Rows on page:</label>
+                    <div class="btn-group" uib-dropdown>
+                        <button type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                            {$ data.page_size $}<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li role="menuitem" ng-repeat="i in data.per_page_list">
+                                <a href ng-click="getData(1, i)">{$ i $}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" style="padding-top: 10px">
+                Total rows: {$ data.total_items $}.
+            </div>
+            <div class="pagination pull-right">
+                <li ng-class="data.has_previous ? 'enabled' : 'disabled'">
+                    <a href ng-click="getData(data.previous_page_number)"><< Prev</a>
+                </li>
+                <li ng-repeat="p in data.page_range track by $index"
+                    ng-class="{'active': p==data.number, 'disabled': p=='...'}">
+                    <a href ng-click="getData(p)">{$ p $}</a>
+                </li>
+                <li ng-class="data.has_next ? 'enabled' : 'disabled'">
+                    <a href ng-click="getData(data.next_page_number)">Next >></a>
+                </li>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}
+{% block extra %}
+{% endblock %}

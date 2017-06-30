@@ -1,0 +1,41 @@
+<div class="widgets">
+    <div class="col-md-12">
+      <div id="admin-panel" ng-controller="StateAdminPanelCtrl" class="panel animated zoomIn" style="width: 100%">
+{#          <div class="panel-heading clearfix"><h3 class="panel-title">{% block title %}<i class="{{ icon }}"/>&nbsp;&nbsp;{{ panel_title }}{% endblock %}</h3></div>#}
+          <div class="panel-heading clearfix">
+
+              <div style="float: left">
+{% block panel_title %}
+                <h3 class="panel-title"><i class="{{ icon }}"/>&nbsp;<span ng-bind-html="panel_title || '{{ title }}'"></span></h3>
+{% endblock %}
+              </div>
+
+
+              <div style="float: right; margin-top: -10px;">
+{% block panel_home_button %}
+                  <button type="button" style="width: 40px;" class="btn btn-success btn-with-icon" ng-click="goToTable('{{ state_name }}')"><i
+                        class="fa fa-home"></i>
+                  </button>
+{% endblock %}
+              </div>
+
+          </div>
+          <div class="panel-body">
+              {% block content %}
+{#                  <div class="input-group btn-group">#}
+{#              <button type="button" class="btn btn-info btn-with-icon" ui-sref=".change"><i class="ion-plus-round"></i>Create</button>#}
+{#             <uib-dropdown class="btn btn-info btn-with-icon">#}
+{#                  <a uib-dropdown-toggle ng-click="$event.stopPropagation()">#}
+{#                    Select action <i class="caret"></i>#}
+{#                  </a>#}
+{#                  <ul class="uib-dropdown-menu">#}
+{#                    <li><a ng-click="$dropdownTabActive = 1">Delete selected records</a></li>#}
+{#                  </ul>#}
+{#             </uib-dropdown>#}
+{#                  </div>#}
+                 {{ grid_view|safe }}
+              {% endblock %}
+          </div>
+      </div>
+     </div>
+</div>

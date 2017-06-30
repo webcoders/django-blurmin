@@ -1,0 +1,11 @@
+{%  extends "gridview.html" %}
+{% load ui i18n %}
+{% block controller-body %}
+    <div ng-controller="FileUploaderObjectToolsController">
+        <div class="object-tools pull-right">
+            <button type="button" ng-click="newFolderDialog()" class="btn btn-info">New Folder</button>
+            <button type="button" ng-click="fileUploadDialog()" class="btn btn-info">Upload</button>
+        </div>
+        {{ block.super }}
+    </div>
+{% endblock %}

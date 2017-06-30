@@ -1,0 +1,172 @@
+.first-delivery-class {
+    background-color: rgba(232,86,86,.2);
+    padding: 5px;
+}
+
+.business-delivery-class {
+    background-color: rgba(223,184,28,.2);
+    padding: 5px;
+}
+
+.economy-delivery-class {
+    background-color: rgba(32,158,145,.2);
+    padding: 5px;
+}
+
+.classes {
+    text-align: center;
+    margin-bottom: 1px;
+}
+
+.cls {
+    padding-top: 7px;
+}
+
+.charges, .charges .form-control {
+    font-size: 18px!important;
+    text-align: center;
+}
+.classes .charges {
+    padding-top: 25px;
+}
+
+.service-list .title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.service-list .total, .service-list .total input {
+    font-size: 25px;
+}
+
+.service-list .total-title {
+    font-size: 23px;
+    margin-top: 7px;
+}
+
+
+.service-list .chevron {
+    top: 2px;
+    padding-left: 10px;
+}
+
+.service-list .expanded-panel {
+    padding-top:15px;
+}
+.service-list .link {
+    cursor: pointer;
+}
+
+#packingmaterialsgridviewTable > tbody > tr > td:first-child {
+    display: none;
+}
+
+#packingmaterialsgridviewTable > thead > tr > th:first-child {
+    display: none;
+}
+
+#bulkyarticlesgridviewTable > tbody > tr > td:first-child {
+    display: none;
+}
+
+#bulkyarticlesgridviewTable > thead > tr > th:first-child {
+    display: none;
+}
+
+
+#specialservicespickupgridviewTable > tbody > tr > td:first-child {
+    display: none;
+}
+
+#specialservicespickupgridviewTable > thead > tr > th:first-child {
+    display: none;
+}
+
+#specialservicesdeliverygridviewTable > tbody > tr > td:first-child {
+    display: none;
+}
+
+#specialservicesdeliverygridviewTable > thead > tr > th:first-child {
+    display: none;
+}
+
+
+
+.packing-material-dialog .btn-ok {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.packing-material-dialog .horizontal-scroll {
+    max-height: 465px;
+}
+
+.others {
+    padding-top: 10px;
+}
+
+#otherspricegridviewTable #id_price {
+    width: 110px;
+}
+
+#otherspricegridviewTable #id_title {
+    width: 450px;
+}
+
+#otherspricegridviewTable th:first-child {
+    width: 460px;
+}
+
+#otherspricegridviewTable td:first-child {
+    width: 460px;
+}
+
+#packingmaterialsgridviewTable input,
+#specialservicespickupgridviewTable input[type="text"],
+#specialservicesdeliverygridviewTable input[type="text"],
+#bulkyarticlesgridviewTable input {
+    width: 60px;
+    height: 30px;
+    margin: 2px;
+}
+
+.modal-special-services .modal-dialog {
+  width: 1000px;
+}
+
+.modal-special-services .modal-body {
+  height: 646px;
+  width: 1000px;
+  overflow: auto;
+  padding-top: 3px;
+}
+
+.grid-otherspricegridview input[name=search], .grid-otherspricegridview .search-btn {
+    display: none;
+}
+
+.grid-otherspricegridview .search-panel button:first-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.grid-revisedotherspricegridview input[name=search], .grid-revisedotherspricegridview .search-btn {
+    display: none;
+}
+
+.grid-revisedotherspricegridview .search-panel button:first-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+
+.modal-fit .modal-body {
+    height: 586px;
+}
+
+.revised-estimate input {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

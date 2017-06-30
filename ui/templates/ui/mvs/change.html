@@ -1,0 +1,14 @@
+{% extends 'ui/formview.html' %}
+{% block before_content %}
+{% endblock %}
+<div ng-controller="ModalsPageCtrl">
+{% block buttons_bottom %}
+    <div class="col-sm-12" style="text-align: center; margin: 10px;">
+        <button type="submit" class="btn btn-info btn-with-icon" ng-click="setAction('save')"><i class="fa fa-save"></i>Save</button>
+        <button type="submit" class="btn btn-info btn-with-icon"  ng-click="setAction('save_and_continue')" ><i class="ion-android-checkmark-circle"></i>Save and
+            continue editing
+        </button>
+        <button type="button" ng-click="delete()" ng-show="record_id"  class="btn btn-danger btn-with-icon"><i class="ion-trash-a"></i>Delete</button>
+    </div>
+{% endblock %}
+</div>

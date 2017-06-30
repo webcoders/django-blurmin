@@ -1,0 +1,18 @@
+<div class="modal-content browser-body">
+    <div class="modal-header bg-info">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em style="color: white;" class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <span class="fa fa-folder-o"/>&nbsp;&nbsp;New Folder
+    </div>
+    <div ng-controller="FileUploaderObjectToolsController" class="modal-body">
+        <div ng-class="{'rounded-border': !new_folder_value}" class="input-group btn-group">
+            <input autofocus="autofocus" class="form-control" required="true" ng-model="new_folder_value" enter-pressed="ok(newFolder(dir))"
+                   placeholder="Folder Name..."
+                   type="text">
+            <span ng-show="new_folder_value" class="input-group-btn">
+                            <button class="btn btn-info" type="button" ng-click="ok(newFolder(dir))">Create</button>
+            </span>
+        </div>
+    </div>
+</div>

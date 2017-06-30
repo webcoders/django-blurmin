@@ -1,0 +1,18 @@
+{%  extends "ui/gridview-editable-inline.html" %}
+{% block grid-container %}
+    <div id="grid-container" ng-show="stateSharedData.view_mode=='list'">
+{% endblock %}
+{% block display_link %}
+        <a ui-sref=".change({id:{% if row_id_field_name == 'slug' %}'{$object.{{ row_id_field_name }}$}'{% else %}{$object.{{ row_id_field_name }}$}{% endif %}})">{$ object.{{ field }} $}</a>
+{% endblock %}
+{% block extra %}
+</div>
+{% block change-view %}
+<div ui-view="change" id="form-container"  ng-show="stateSharedData.view_mode=='change'" >
+{#style="position:absolute;z-index: 999;top:0px;"#}
+{#  ng-include="'{{ change_view_url }}'#}
+</div>
+{% endblock %}
+{% block delete_template %}{{ block.super }}
+{% endblock %}
+{% endblock %}

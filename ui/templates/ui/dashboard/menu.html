@@ -1,0 +1,81 @@
+
+(function () {
+  'use strict';
+
+var uib_dashboard = angular.module('ui.backend.dashboard', [
+      'ui.bootstrap',
+      'ngAnimate',
+      'ngSanitize',
+      'angular-bind-html-compile',
+      'ui.multiselect',
+    'ct.ui.router.extras.core',
+    'ct.ui.router.extras.sticky',
+    'ct.ui.router.extras.statevis',
+    'ct.ui.router.extras.dsr',
+  ])
+      .config(routeConfig);
+
+uib_dashboard.run(function($rootScope){
+    $rootScope.stateSharedData={};
+    $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams){
+        if ( toState.data && toState.data.view_mode ) {
+            event.currentScope.stateSharedData.view_mode = toState.data.view_mode;
+        }
+    })
+})
+
+  /** @ngInject */
+  function routeConfig($stateProvider,$stickyStateProvider,$locationProvider) {
+
+
+    $stateProvider
+      {% for item in menu %}
+      {% if item.body %}
+      {{ item.body }}
+      {% else %}
+        .state('{{ item.state }}', {
+      {% if item.url %}
+          url: '{{ item.url }}',
+      {% endif %}
+      {% if item.abstract == "true" %}
+          template : '<ui-view></ui-view>',
+      {% else %}
+          templateUrl: '{{ item.url }}',
+      {% endif %}
+          abstract: {{ item.abstract }},
+          title: '{{ item.title }}',
+          sidebarMeta: {
+            icon: '{{ item.icon }}',
+            order: {{ forloop.counter }},
+          },
+        })
+      {% endif %}
+      {% for sub_item in item.items %}
+      {% if sub_item.body %}
+      {{ sub_item.body }}
+      {% else %}
+        .state('{{ sub_item.state }}', {
+      {% if sub_item.url %}
+          url: '{{ sub_item.url }}',
+      {% endif %}
+      {% if sub_item.abstract == "true" %}
+          template : '<ui-view></ui-view>',
+      {% else %}
+          templateUrl: '{{ sub_item.url }}',
+      {% endif %}
+          abstract: {{ sub_item.abstract }},
+          title: '{{ sub_item.title }}',
+          sidebarMeta: {
+            icon: '{{ sub_item.icon }}',
+            order: {{ forloop.counter }},
+          },
+        })
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+{#      {% include "estimate/menu_state.html" %}#}
+  }
+})();
+
+{{ separate_modules|safe }}

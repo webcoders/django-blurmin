@@ -1,0 +1,20 @@
+<div class="widgets">
+    <div class="col-md-12">
+      <div id="admin-panel" ng-controller="AdminPanelCtrl" class="panel animated zoomIn" style="width: 100%">
+          <div class="panel-heading clearfix">
+              <div style="float: left">
+                <h3 class="panel-title"><i class="{{ icon }}"/>&nbsp;<span ng-bind-html="panel_title || '{{ title }}'"></span></h3>
+              </div>
+              <div style="float: right; margin-top: -10px;">
+                  <button type="button" style="width: 40px;" class="btn btn-success btn-with-icon" ng-click="goToTable()"><i
+                        class="fa fa-home"></i>
+                  </button>
+              </div>
+          </div>
+          <div class="panel-body">
+              {% block content %}
+              {% endblock %}
+          </div>
+      </div>
+     </div>
+</div>

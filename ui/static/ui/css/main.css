@@ -1,0 +1,329 @@
+.grid-widget .glyphicon-sort {
+    float: right;
+}
+
+.grid-widget .glyphicon span {
+    margin-left: 5px;
+}
+
+.grid-widget .dropdown-menu .active {
+    background-color: #dedede;
+}
+
+.sort:hover {
+    text-decoration: none;
+}
+
+.grid-filter {
+    margin: auto;
+}
+
+.grid-filter .input-group {
+    margin-bottom: 0px;
+}
+
+.grid-ui .control-label {
+    display: none;
+}
+
+.am-pm button {
+    height: 34px;
+
+}
+
+.grid-filter .select-field-btn, .select-cond-btn {
+    font-weight: bold;
+}
+
+.grid-filter .filter-apply {
+    margin-top: 5px;
+}
+
+input.ng-dirty.ng-invalid {
+    border: 1px solid #ed7878;
+}
+
+.uib-daypicker .btn:hover {
+    -webkit-transform: inherit;
+    transform: inherit;
+}
+
+.btn-no-effect:hover {
+    -webkit-transform: inherit;
+    transform: inherit;
+}
+
+.radio label{
+    text-align: center;
+}
+
+.status {
+    text-align: center;
+    color:black;
+    border-bottom: 1px solid white;
+}
+
+.radio-select ul{
+    list-style-type: none;
+    display: inline;
+    padding: 0px;
+}
+
+.radio-select ul li {
+    display: inline;
+    padding: 10px;
+}
+
+.modal-fit {
+    z-index: 100000!important;
+}
+.modal-content .select-page-size-wrap {
+    display: none;
+}
+
+.modal-content a span {
+    color: #209e91 !important;
+}
+
+.modal-fit .modal-dialog {
+  width: 900px;
+}
+
+.modal-fit .modal-body {
+  height: 575px;
+  width: 900px;
+  overflow: auto;
+  padding-top: 3px;
+}
+
+.object-tools {
+    padding-bottom: 10px;
+}
+
+mwl-calendar .event {
+    border: none !important;
+    box-shadow: none!important;
+}
+
+
+mwl-calendar .cal-slide-content {
+    background-color: rgba(32, 158, 145, 0.2)!important;
+    border-color: rgba(32, 158, 145, 0.2)!important;
+    box-shadow: none!important;
+}
+
+mwl-calendar .cal-slide-content a.event-item {
+    color: #666666;
+}
+mwl-calendar .badge {
+    background-color: #5bc0de!important;
+    border-color: #46b8da;
+}
+
+mwl-calendar .events-list .event {
+    box-shadow: none;
+}
+
+mwl-calendar .cal-event-list .event.pull-left {
+    margin-top: 0px;
+    padding: 5px;
+}
+
+mwl-calendar .cal-event-list li {
+    padding: 3px;
+}
+
+/* popup tooltip */
+.popup-tooltip {outline:none; }
+.popup-tooltip strong {line-height:30px;}
+.popup-tooltip:hover {text-decoration:none;} 
+.popup-tooltip span {
+    z-index:500000;display:none; padding:14px 20px;
+    margin-top:-30px; margin-left:28px;
+    width:300px; line-height:16px;
+}
+.popup-tooltip:hover span{
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:white;}
+.callout {z-index:500010;position:absolute;top:30px;border:0;left:-12px;}
+
+.popup-tooltip img {
+    position: static;
+}
+
+/*CSS3 extras*/
+.popup-tooltip span
+{
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+/* popup tooltip end */
+
+.fb-modal-upload {
+    z-index: 300000!important;
+}
+
+.rounded-border input {
+    border-top-right-radius: 4px!important;
+    border-bottom-right-radius: 4px!important;
+}
+.modal-dialog .progress {
+    margin-top: 5px;
+}
+
+.grid-filter table {
+    margin-top: 10px;
+}
+
+.top-dropdown-menu .msg-list > a .msg-area {
+    width: 240px;
+}
+
+.field-label {
+    margin-bottom: 4px;
+}
+
+.errorlist {
+    list-style: none;
+    padding: 0px;
+}
+
+.help-block {
+    color: #949494!important;
+}
+
+.help-block .errorlist {
+    color: #a94442;
+}
+
+.alert {
+    margin-top: 10px;
+    background-color: #e85656!important;
+    font-weight: 400!important;
+    font-size: 15px!important;
+}
+.has-error .form-control {
+    border: 1px solid #ed7878!important;
+}
+.readonly{
+    display: block;
+    background-color: #f1f1f1;
+    border-radius:4px;
+    width: 100%;
+    padding: 9px 13px;
+    min-height: 34px;
+}
+.label-pos-h{
+    float: left;
+    position: absolute;
+    padding-top: 10px;
+}
+
+.label-pos-h1{
+    margin-top: 9px;
+}
+
+.label-pos-v{
+    padding-bottom:5px;
+}
+.searchbox {
+    padding: 4px 8px;
+}
+
+.questions-section {
+    position: absolute;
+    right: 200px;
+    top: 0;
+    height: 66px;
+    line-height: 66px;
+    color: #fff;
+    font-weight: 300;
+}
+
+h3.with-line {
+    padding-top: 0px!important;
+}
+
+.inventory .nav.nav-tabs {
+    background-color: transparent;
+}
+
+.inventory .nav-tabs li a {
+    margin-right: -3px !important;
+    cursor: pointer;
+}
+
+.inventory li a span {
+    cursor: pointer;
+}
+
+
+.inventory .nav.nav-tabs a {
+    color: #555 !important;
+    border-radius: 0px!important;
+    padding: 10px;
+}
+
+.inventory .nav.nav-tabs > li.active > a {
+    background-color: #63bbb2!important;
+}
+
+.first-delivery-class {
+    background-color: rgba(232,86,86,.2);
+    padding: 25px;
+}
+
+.business-delivery-class {
+    background-color: rgba(223,184,28,.2);
+    padding: 25px;
+}
+
+.economy-delivery-class {
+    background-color: rgba(32,158,145,.2);
+    padding: 25px;
+}
+
+uib-tab-heading .dropdown-menu > li {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+uib-tab-heading .dropdown-menu {
+    margin-top: 11px!important;
+}
+
+.disabled {
+    background-color: #ffffff!important;
+    color: inherit!important;
+    border-color: transparent!important;
+    text-align: center!important;
+    cursor: default!important;
+    width: 100%;
+}
+
+#grid-container table .form-group, #grid-container table .form-buttons {
+    margin: 10px;
+}
+
+#grid-container table .label-pos-h {
+    padding-top: 2px;
+}
+
+table .form-control {
+    display: inline!important;
+}
+
+.datePicker {
+    width: 200px!important;
+    margin-bottom: 0px!important;
+}
+/* fixes selectpicker htnl5 error message dissapearing!! */
+.btn-group.bootstrap-select select {
+    width: 1px !important;
+}

@@ -1,0 +1,18 @@
+<div class="modal-content browser-body">
+    <div class="modal-header bg-info">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em style="color: white;" class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <span class="fa fa-pencil"/>&nbsp;&nbsp;Rename File /Folder
+    </div>
+    <div ng-controller="FileUploaderObjectToolsController" class="modal-body">
+        <div ng-class="{'rounded-border': !rename_value}" class="input-group btn-group">
+            <input autofocus="autofocus" class="form-control" required="true" ng-model="rename_value" enter-pressed="ok(renameFileDir(dir))"
+                   placeholder="File / Folder Name..."
+                   type="text">
+            <span ng-show="rename_value" class="input-group-btn">
+                <button class="btn btn-info" type="button" ng-click="ok(renameFileDir(dir, old_value))">Rename</button>
+            </span>
+        </div>
+    </div>
+</div>

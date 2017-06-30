@@ -1,0 +1,32 @@
+{% block before_content %}{% endblock %}
+
+{% block content %}
+    <form ng-submit="{% if on_submit %}{{ on_submit }}{% else %}setRecordData(){% endif %}" method="post" name="{{ view_name }}Form"
+          url="{{ view_url }}"
+          grid-view-name="{{ grid_view_name }}"
+          state_driven="{{ state_driven }}"
+          delete_url="{{ delete_view_url }}"
+          ng-id="{% if form_type == "change" %}none{% endif %}"
+          row_id_field_name="{{ row_id_field_name }}"
+          form-type="{% if form_type %}{{ form_type }}{% else %}grid-change{% endif %}"
+          ng-init="initForm({{ ng_model }})" ng-controller="formController as gridform">
+        {{ form.render_errors }}
+        {% csrf_token %}
+        {% block form_content %}
+            {% for field in render_form %}
+                {% if field.field.widget.autocomplete_view %}
+                    <span ng-show="form.fields.{{ field.html_name }}">{{ field }}</span>
+                {% else %}
+                    <span ng-show="form.fields.{{ field.html_name }}"
+                          bind-html-compile="form.content.{{ field.html_name }}"></span>
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+        {% block buttons_bottom %}
+            <div class="col-sm-12" style="text-align: center; margin: 10px;">
+                <button type="submit" class="btn btn-info btn-with-icon"><i class="ion-android-checkmark-circle"></i>Save
+                </button>
+            </div>
+        {% endblock %}
+    </form>
+{% endblock %}

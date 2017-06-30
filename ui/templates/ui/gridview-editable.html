@@ -1,0 +1,22 @@
+{%  extends "ui/gridview.html" %}
+{% load ui i18n %}
+{% block controller %}{{ block.super }}
+<div id="grid-container" {% block view_state %} ng-show="editable.view_mode=='table'" {% endblock %}>
+{% endblock %}
+{% block controller-body %}{{ block.super }}
+{% endblock %}
+{% block cell %}
+                     {% if field in list_display_links %}
+                        <td>
+                            <a href="" ng-click="editRow(object)">{$ object.{{ field }} $}</a>
+                        </td>
+                        {% else %}
+                            {{ block.super }}
+                        {% endif %}
+
+{% endblock %}
+{% block extra %}
+<div id="form-container" ng-show="editable.view_mode=='record'"  ng-include="'/ui/{{ url_name }}/change'">
+</div>
+</div>
+{% endblock %}

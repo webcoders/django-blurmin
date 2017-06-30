@@ -1,0 +1,164 @@
+@import url(/static/css/Roboto_Condensed_400-300.css);
+/* Martin edition */
+#inventory ol, #inventory ul {
+  list-style: none; }
+
+#inventory h3 {
+  font: 18px/20px 'Roboto Condensed' !important;
+  font-weight: 400;
+  line-height: 1.2em;
+  margin: 0px 0 0px;
+}
+
+#inventory h3 > span:nth-child(1), #inventory h3 > span:nth-child(1) > span {
+  display: inline-block;
+  height: 36px;
+  margin-right: 10px;
+  margin-top: -3px;
+  vertical-align: middle;
+  width: 36px; }
+
+#inventory .nav-tabs > li {
+  float: none; }
+
+#inventory .nav > li {
+  display: inline-block; }
+
+#inventory input.finder {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  width: 300px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#inventory .filtered {
+  border: 1px #000 solid;
+  box-shadow: 0 0 5px #000; }
+
+#inventory span#custom_folder {
+  background-position: -845px -618px !important;
+  background: url(/static/images/icons/iconset.png) no-repeat; }
+
+#inventory div.part ul li {
+  display: inline-block;
+  width: 160px;
+  height: 50px;
+  overflow: hidden;
+  text-align: center;
+  /*    border: 1px #cecece solid;*/
+  border: 1px #E0D7CD dashed;
+  padding: 2px;
+  margin-right: 5px; }
+  #inventory div.part ul li div {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  #inventory div.part ul li .img {
+    width: 44px;
+    height: 44px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    clear: both;
+    background-position: 50% 50%;
+    display: inline-block;
+    float: left;
+    clear: left; }
+  #inventory div.part ul li .control {
+    float: right;
+    clear: right;
+    width: 20px;
+    margin-top: -3px; }
+  #inventory div.part ul li .control a {
+    float: fight; }
+  #inventory div.part ul li a.plus {
+    width: 18px;
+    height: 15px;
+    background: none;
+    display: block;
+    float: right;
+    font-size: 18px;
+    margin-right: 0px; }
+  #inventory div.part ul li a.minus {
+    width: 18px;
+    height: 15px;
+    background: none;
+    display: block;
+    float: right;
+    font-size: 18px;
+    margin-top: -5px;
+    color: lightgrey; }
+  #inventory div.part ul li .delete {
+    position: absolute;
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: url(/static/images2/delete-2.png) 50% 50% no-repeat;
+    background-size: cover;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 40px;
+    margin-left: -10px; }
+  #inventory div.part ul li .selected-item-hidden {
+    display: none; }
+  #inventory div.part ul li div span.itemname {
+    font-family: arial;
+    width: 70px;
+    height: 50px;
+    overflow: hidden; }
+
+.selected-item a.minus {
+  color: #337AB7 !important; }
+
+.item-counter {
+  height: 20px !important;
+  width: 20px;
+  text-align: center;
+  float: right;
+  margin: 0px;
+  background: transparent;
+  border: 0;
+  color: #f86a0b;
+  font-size: 15px;
+  font-weight: bold; }
+
+/* badges */
+span[id^="group_items_count_"] {
+  /*vertical-align: top;*/
+  margin: 2px 10px;
+  font-size: inherit;
+  font-weight: inherit; }
+
+.part {
+  overflow-y: scroll;
+  max-height: 500px;
+  min-height: 400px; }
+
+.l-part {
+  float: left; }
+
+.inventory {
+  /*display: none;*/
+}
+
+.inv-menu {
+  text-align: center;
+  border: 1px solid #1594b9;
+  background-color: #2dacd1;
+  color: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.inv-menu a, .inv-menu a:hover {
+  color: white;
+}
+
+#inventory .total {
+  margin-bottom: 10px;
+}

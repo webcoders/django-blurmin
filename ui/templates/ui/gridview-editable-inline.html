@@ -1,0 +1,190 @@
+{%  extends "ui/gridview.html" %}
+{% load ui i18n %}
+{% block table_class %}table table-bordered table-hover table-condensed{% endblock %}
+{% block controller_extra_attrs %} delete_url="{{ delete_view_url }}"  {% if list_editable|length > 0 %}  ng-init="initGrid({{ initial_data }})" {% endif %}{% endblock %}
+{% block controller %}
+<style>
+.slide {
+    -webkit-transition: -webkit-transform .7s ease-in-out;
+    -moz-transition: -moz-transform .7s ease-in-out;
+    -o-transition: -o-transform .7s ease-in-out;
+    transition: transform .7s ease-in-out;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide.ng-enter {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+.slide.ng-enter.ng-enter-active, .slide.ng-leave {
+    position: absolute;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.slide.ng-leave.ng-leave-active {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+{#  border: 1px solid black;#}
+  background: white;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.8s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.check-element {
+  padding: 10px;
+{#  border: 1px solid black;#}
+  background: white;
+}
+/* -----------------*/
+.slide-container {
+    height: 100px;
+    position: relative;
+}
+.slide-container > * {
+    display:block;
+    width:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:10px;
+}
+.slide-hide, .slide-show {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+}
+.slide-hide {
+    position: relative;
+    top: 0;
+}
+.slide-hide.slide-hide-active {
+    position: absolute;
+    top: -100px;
+}
+.slide-show {
+    position: absolute;
+    top: 100px;
+}
+.slide-show.slide-show-active {
+    position: relative;
+    top: 0px;
+}
+
+
+
+</style>
+{#    <div ui-view="list ">#}
+{#    style="position:relative;"#}
+    {{ block.super }}
+{% block grid-container %}
+    <div id="grid-container" ng-show="{{ view_name }}.editable.view_mode=='table'">
+{% endblock %}
+{#    style="position:absolute; z-index: 999;"#}
+{% endblock %}
+{% block controller-body %}{{ block.super }}
+{% endblock %}
+                        {% block tool_bar_left %}
+                         <button type="button" class="btn btn-default btn-with-icon" ui-sref=".change"><i class="ion-plus-round"></i>Add</button>
+                         <button type="button" class="btn btn-default btn-with-icon" ng-click="deleteSelectedDialog()" ng-show="data.selectedCount()"><i class="ion-trash-a"></i>Delete</button>
+{#                         <uib-dropdown class="btn btn-default btn-with-icon">#}
+{#                              <a uib-dropdown-toggle ng-click="$event.stopPropagation()">#}
+{#                                Select action <i class="caret"></i>#}
+{#                              </a>#}
+{#                              <ul class="uib-dropdown-menu">#}
+{#                                <li><a ng-click="$dropdownTabActive = 1">Delete selected records</a></li>#}
+{#                              </ul>#}
+{#                         </uib-dropdown>#}
+                        {% endblock %}
+{% block rows %}
+    <tr ng-repeat="object in data.object_list"
+    {% if list_editable|length > 0 %}
+        ng-controller="formController as gridform"
+                url="{{ change_view_url }}"
+                delete_url="{{ delete_view_url }}"
+                grid-view-name="{{ view_name }}"
+                row_id_field_name ="{{ row_id_field_name }}"
+                ng-init="initForm({form:object.__rowForm,record:object})" form-type="grid-row"
+    {% endif %}
+    >
+    {% if list_editable|length > 0 %} {% csrf_token %} {% endif %}
+    {% block row_selector %}{{ block.super }}{% endblock %}
+    {% block cells %}
+    {% for field in list_display %}
+    {% block cell %}
+                     {% if field in list_display_links %}
+                        <td>
+                        {% block display_link %}
+{#                            <a ui-sref=".change({id:{% if row_id_field_name == 'slug' %}'{$object.{{ row_id_field_name }}$}'{% else %}{$object.{{ row_id_field_name }}$}{% endif %}})">{$ object.{{ field }} $}</a>#}
+                              <a href="" ng-click="editRow(object)">{$ object.{{ field }} $}</a>
+                       {% endblock %}
+                        </td>
+                     {% elif field in list_editable %}
+                         <td>
+                            <span ng-show="!rowform.visible" ng-bind-html="object.{{ field }}"></span>
+                            <span ng-show="rowform.visible" bind-html-compile="object.__inputs.{{ field }}"></span>
+                         </td>
+                     {% else %}
+                            {{ block.super }}
+                     {% endif %}
+    {% endblock %}
+    {% endfor %}
+{#</form>#}
+    {% endblock %}
+    {% if list_editable|length > 0 %}
+     <td class="editControls">
+      <form ng-submit="setRecordData()" ng-show="rowform.visible" class="form-buttons form-inline">
+        <button type="submit" ng-disabled="rowform.waiting" class="btn btn-primary editable-table-button btn-xs">
+          Save
+        </button>
+        <button type="button" ng-disabled="rowform.waiting" ng-click="cancelEdit()" class="btn btn-default editable-table-button btn-xs">
+          Cancel
+        </button>
+      </form>
+      <div class="buttons" ng-show="!rowform.visible">
+        <button type="button" class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.visible=true">Edit</button>
+        <button type="button" class="btn btn-danger editable-table-button btn-xs" ng-click="delete()">Delete</button>
+      </div>
+    </td>
+    {% endif %}
+     </tr>
+{% endblock %}
+{% block extra %}
+{% block change-view %}
+<div id="form-container" ng-show="{{ view_name }}.editable.view_mode=='record'"  ng-include="'/dashboard/ui/{{ url_name }}/change'">
+</div>
+{% endblock %}
+</div>
+{% block delete_template %}
+<script type="text/ng-template" id="delete-confirmation.html">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <i class="ion-android-warning modal-icon"></i><span> Warning</span>
+      </div>
+        <div class="modal-body text-center">A you sure you want to remove <strong><span ng-bind="record_count"></span></strong> records  ?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="cancel('No')">No</button>
+        <button type="button" class="btn btn-success" ng-click="ok('Yes')">Yes</button>
+      </div>
+    </div>
+</script>
+{% endblock %}
+{% endblock %}

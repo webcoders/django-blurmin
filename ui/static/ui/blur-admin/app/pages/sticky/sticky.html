@@ -1,0 +1,77 @@
+<style>
+   circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+}
+
+text { font: 12px sans-serif; }
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+ul.tabs {
+    display: table;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.tabs > li {
+    float: left;
+    cursor: pointer;
+    padding: .5em 2em .5em 2em;
+    background-color: #DDD;
+}
+
+ul.tabs > li:hover {
+    background-color: #88C;
+}
+
+ul.tabs > li.selected {
+    background-color: #99D;
+}
+</style>
+
+   <div ui-view></div>
+<!--    <state-vis style="position:fixed; bottom: 0;"></state-vis> -->
+
+    <!-- templates -->
+
+    <script type="text/ng-template" id="tab-viewport.html">
+      <div>
+        <ul class="tabs">
+          <li ui-sref=".account" ui-sref-active="selected">Account</li>
+          <li ui-sref=".survey"  ui-sref-active="selected">Survey</li>
+        </ul>
+
+        <div ng-show="$state.includes('st.tabs.survey')"  ui-view="survey" ></div>
+        <div ng-show="$state.includes('st.tabs.account')" ui-view="account"></div>
+      </div>
+    </script>
+
+
+    <script type="text/ng-template" id="account.html">
+      <h1>Account</h1>
+      <a ui-sref=".stuff">My Stuff</a>
+      <a ui-sref=".things">My Things</a>
+      <div ui-view></div>
+    </script>
+
+
+    <script type="text/ng-template" id="survey.html">
+      <h3>Take this survey</h3>
+      How do you like your stuff?
+      <br>
+      <textarea rows="5" cols="55"></textarea>
+
+      <br>
+
+      How do you like your things?
+      <br>
+      <textarea rows="5" cols="55"></textarea>
+    </script>
+

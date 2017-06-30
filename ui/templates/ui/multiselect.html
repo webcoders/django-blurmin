@@ -1,0 +1,38 @@
+<div class="multiselect" ng-controller="multiselectController as ctrl" ng-init="data={{ initial_json }}; total_count={{ total_count }}; url='{{ url }}'; scope_id='{{ scope_id }}'; ng_model='{{ ng_model }}'; init();">
+    <link rel="stylesheet" href="/static/ui/css/multiselect.css">
+    <div class="row">
+        <div class="form-group">
+            {{ text_input|safe }}
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6"><label>All Items</label>
+                <button type="button" class="btn btn-default btn-xs"
+                        ng-click="ctrl.transfer(data, {{ ng_model }}, -1)"> Select All
+                </button>
+                <div class="pool">
+                    <ul>
+                        <li ng-repeat="item in data | filter: searchTerm  | orderBy:'unicode'"><a
+                                href=""
+                                ng-click="ctrl.transfer(data, {{ ng_model }}, data.indexOf(item))">{$ item.unicode $}&nbsp;&rArr; </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6"><label>Selected Items</label>
+                <button type="button" class="btn btn-default btn-xs"
+                        ng-click="ctrl.transfer({{ ng_model }}, data, -1)"> Deselect All
+                </button>
+                <div class="pool form-control">
+                    <ul>
+                        <li ng-repeat="item in {{ ng_model }} | orderBy:'unicode'"><a href=""ng-click="ctrl.transfer({{ ng_model }}, data, {{ ng_model }}.indexOf(item))"> &lArr;&nbsp;{$ item.unicode $}</a>
+                        </li>
+                    </ul>
+                    <select ui-multiselect-wide="y" name="{{ name }}" style="visibility: hidden">
+                        <option ng-repeat="item in {{ ng_model }}" value="{$ item.id $}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

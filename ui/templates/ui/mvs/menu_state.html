@@ -1,0 +1,38 @@
+        .state('{{ parent_state }}{{ state_name }}', {
+          url: '/{{ state_url }}',
+          templateUrl: '{{ url }}',
+          title: '{{ title }}',
+          data: { view_mode:'list'},
+          controller: function($rootScope,$scope,$stateParams){
+            $rootScope.stateSharedData = {view_mode:'list',grid:null }
+          },
+          {% if not hidden %}
+          sidebarMeta: {
+            icon: '{{ icon }}',
+            order: {% if order %}{{ order }}{% endif %},
+          },
+          {% endif %}
+        }).state('{{ parent_state }}{{ state_name }}.change', {
+// {id:[0-9A-Z]{6}}
+//{%if row_id_field_name != 'slug' %}[0-9]{0,10}{% else %}[0-9A-Z]{0,6}{% endif %}
+            url: '/change/{id:{%if row_id_field_name != 'slug' %}[0-9]{0,10}{% else %}[0-9A-Z]{0,6}{% endif %}}',
+            sticky: true,
+            title: '{{ title }}',
+            data: { view_mode:'change'},
+            views: {'change': { templateUrl: '{{ change_url }}',
+                    controller: function($rootScope,$scope,$stateParams) {
+                        if ( $rootScope.stateSharedData ) {
+                            $rootScope.stateSharedData.view_mode ='change';
+                        } else {
+                            $rootScope.stateSharedData = {view_mode:'change'};
+                        }
+                        if ( $stateParams.id ) {
+                            if ($scope.editable) {
+                                $scope.editable.record_id = $stateParams['id'];
+                            } else {
+                                $scope.editable = {record_id :$stateParams['id']};
+                            }
+                        }
+                    }
+            }}
+        })

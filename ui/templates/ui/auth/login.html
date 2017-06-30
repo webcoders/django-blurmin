@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Django UI Admin</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="{% static "ui/lib/ionicons.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/angular-toastr.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/animate.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/bootstrap.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/bootstrap-select.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/bootstrap-switch.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/bootstrap-tagsinput.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/font-awesome.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/fullcalendar.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/leaflet.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/angular-progress-button-styles.min.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/angular-chart.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/chartist.min.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/morris.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/ion.rangeSlider.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/ion.rangeSlider.skinFlat.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/textAngular.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/xeditable.css" %}" >
+  <link rel="stylesheet" href="{% static "ui/lib/style.css" %}" >
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static "ui/app/auth.css" %}">
+  <!-- endinject -->
+  <!-- endbuild -->
+  <style>
+    .bg-danger {
+        background-color: rgba(232, 86, 86, 0.85);
+        color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+<main class="auth-main">
+  <div class="auth-block">
+    <h1>Sign in to Moving Admin</h1>
+{#    <a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>#}
+      {% if form.errors %}
+        <div class="alert bg-danger"><strong>Your username and password didn't match. Please try again.</strong></div>
+      {% endif %}
+    <form class="form-horizontal" method="POST" action="">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-10">
+          <input autofocus class="form-control" id="inputUsername" name="username" placeholder="Username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+        </div>
+      </div>
+        <input type="hidden" name="{{ REDIRECT_FIELD_NAME }}"/>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default btn-auth">Sign in</button>
+{#          <a href class="forgot-pass">Forgot password?</a>#}
+        </div>
+      </div>
+      <div style="text-align: center; top: 7px; position: relative;">
+          © 2017 Copyright Webcoders.ru . All right reserved.
+      </div>
+    </form>
+{#    <div class="auth-sep"><span><span>or Sign in with one click</span></span></div>#}
+{##}
+{#    <div class="al-share-auth">#}
+{#      <ul class="al-share clearfix">#}
+{#        <li><i class="socicon socicon-facebook" title="Share on Facebook"></i></li>#}
+{#        <li><i class="socicon socicon-twitter" title="Share on Twitter"></i></li>#}
+{#        <li><i class="socicon socicon-google" title="Share on Google Plus"></i></li>#}
+{#      </ul>#}
+{#    </div>#}
+  </div>
+</main>
+</body>
+</html>
