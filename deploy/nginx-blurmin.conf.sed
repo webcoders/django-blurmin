@@ -1,4 +1,4 @@
-# REPLACE '/home/archi/prj/da' WITH YOUR PROJECT PATH!!!!
+# REPLACE '#pwd#' WITH YOUR PROJECT PATH!!!!
 
 server {
 	listen 80;
@@ -27,32 +27,32 @@ server {
 #	}
 
     location /static {
-    	root  /home/archi/prj/da/ui/;
+    	root  #pwd#/;
     }
 
     location /bower_components {
-            root   /home/archi/prj/da/static/ui/;
+            root   #pwd#/static/ui/;
     }
 
 
     location /dashboard/app/ {
-            alias   /home/archi/prj/da/static/ui/blur-admin/app/;
+            alias   #pwd#/static/ui/blur-admin/app/;
     }
 
     location /dashboard/assets/ {
-            alias   /home/archi/prj/da/static/ui/blur-admin/assets/;
+            alias   #pwd#/static/ui/blur-admin/assets/;
     }
 
     location /dashboard/fonts/ {
-            alias   /home/archi/prj/da/static/ui/blur-admin/fonts/;
+            alias   #pwd#/static/ui/blur-admin/fonts/;
     }
 
     location /dashboard/lib {
-            alias   /home/archi/prj/da/static/ui/blur-admin/lib/;
+            alias   #pwd#/static/ui/blur-admin/lib/;
     }
 
     location /dashboard/sass/ {
-            alias   /home/archi/prj/da/static/ui/blur-admin/sass/;
+            alias   #pwd#/static/ui/blur-admin/sass/;
     }
 
 }

@@ -13,29 +13,31 @@ django >= 1.10 , nginx
 How to run
 ----------
 
-This section assumes your are running some debian like linux OS
+This section assumes your are running some debian like linux OS, your current directory is a project root
 
 - Install requirements if you have no installed them:
 
 .. code:: sh
 
-    $ pip install django
-    $ apt-get install nginx
+    $ sudo pip install django
+    $ sudo apt-get install nginx
 
 - Create your local_settings.py and put your database connection settings there. Then build django database:
 
 .. code:: sh
 
-    $ ./manage.py makemigrations
+    $ ./manage.py makemigrations notifications dashboard myapp
     $ ./manage.py migrate
 
-- Open deploy/nginx-blurmin.conf and replace paths to your project directory
-- Add blurmin host to your nginx
+- Add blurmin host to your nginx, run django dev server
 
 .. code:: sh
 
-    $ sudo ln -s deploy/nginx-blurmin.conf /etc/nginx/sites-enabled/nginx-blurmin.conf
-    $ sudo echo "127.0.0.1 blurmin" > /etc/hosts
+    $ source deploy/nginx-conf.sh
+    $ sudo ln -s `pwd`/deploy/nginx-blurmin.conf /etc/nginx/sites-enabled/nginx-blurmin.conf
+    $ echo '127.0.0.1 blurmin' | sudo tee --append /etc/hosts
+    $ sudo service nginx reload
+    $ ./manage.py runserver
 
 - Point your browser to http://blurmin/dashboard
 
