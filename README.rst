@@ -8,7 +8,7 @@ There is example project and app under the myapp and myproject folders, you can 
 Requirements
 ------------
 
-django >= 1.10 , nginx
+django >= 1.10
 
 How to run
 ----------
@@ -20,7 +20,6 @@ This section assumes your are running some debian like linux OS, your current di
 .. code:: sh
 
     $ sudo pip install django
-    $ sudo apt-get install nginx
 
 - Create your local_settings.py and put your database connection settings there. Then build django database:
 
@@ -29,7 +28,11 @@ This section assumes your are running some debian like linux OS, your current di
     $ ./manage.py makemigrations notifications dashboard myapp
     $ ./manage.py migrate
 
-- Add blurmin host to your nginx, run django dev server
+
+We recommend to use nginx
+-------------------------
+
+- Add blurmin host to your nginx
 
 .. code:: sh
 
@@ -37,9 +40,8 @@ This section assumes your are running some debian like linux OS, your current di
     $ sudo ln -s `pwd`/deploy/nginx-blurmin.conf /etc/nginx/sites-enabled/nginx-blurmin.conf
     $ echo '127.0.0.1 blurmin' | sudo tee --append /etc/hosts
     $ sudo service nginx reload
-    $ ./manage.py runserver
 
-- Point your browser to http://blurmin/dashboard
+- Now your site in under http://blurmin/dashboard
 
 .. _`Django`: http://djangoproject.com/
 .. _`Akveo Blur Admin`: https://akveo.github.io/blur-admin/
