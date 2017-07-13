@@ -1,9 +1,0 @@
-User-Agent: *
-
-Disallow: /login
-Disallow: /signup
-Disallow: /account
-Disallow: /dashboard
-Disallow: /user
-
-# Sitemap: http://www.myapp.com/sitemap.xml

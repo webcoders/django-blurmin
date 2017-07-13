@@ -133,7 +133,7 @@ ADMIN_LOCATION = 'dashboard/'
 
 LOGIN_URL = '/' + ADMIN_LOCATION + 'ui/loginview/'
 LOGIN_REDIRECT_URL = '/' + ADMIN_LOCATION
-
+BLURMIN_DEVMODE = True
 
 ADMIN_MENU = 'myapp.blurmin_menu.menu'
 

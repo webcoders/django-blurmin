@@ -15,21 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-# from ui.form_view import ChangeViewTest
-# from ma import uiadmin
 from ui.register import *
 from ui.notifications import uiadmin
 from myapp import blurmin
-from ui.views.home import HomeView
+from ui.views.home import HomeView,ThemeRedirectView
 from django.conf import settings
 
 urlpatterns = [
 url(r'^admin/', admin.site.urls),
 url(r'^%s' % settings.ADMIN_LOCATION, include([
-    # url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view()),
+# This needed only for running without nginx!!! We recommend to use nginx rewrites you can found under /deploy
+    url('^(app|assets|fonts|img|lib|sass)/',ThemeRedirectView),
     url(r'^ui/', ui.urls),
-    # url(r'(^modelform/(?P<pk>\d+))|(^modelform/)', ChangeViewTest.as_view()),
     # url(r'^send_notifications/$', notification_view),
     ]))
 ]
