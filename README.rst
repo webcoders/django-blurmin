@@ -27,7 +27,9 @@ This section assumes your are running some debian like linux OS, your current di
 
     $ ./manage.py makemigrations notifications dashboard myapp
     $ ./manage.py migrate
+    $ ./manage.py runserver
 
+- Point your browser to http://localhost:8000
 
 We recommend to use nginx
 -------------------------
@@ -41,7 +43,7 @@ We recommend to use nginx
     $ echo '127.0.0.1 blurmin' | sudo tee --append /etc/hosts
     $ sudo service nginx reload
 
-- Now your site in under http://blurmin/dashboard
+- Now your site running on http://blurmin/dashboard
 
 .. _`Django`: http://djangoproject.com/
 .. _`Akveo Blur Admin`: https://akveo.github.io/blur-admin/
