@@ -1,0 +1,17 @@
+include LICENSE README.rst
+recursive-include doc *
+recursive-include ui *
+recursive-include deploy *
+recursive-exclude myapp *
+recursive-exclude myproject *
+recursive-exclude myapp *
+recursive-exclude */static/ui/bower_components *
+recursive-exclude */static/ui/node_modules *
+recursive-exclude */static/ui/release *
+recursive-exclude */static/ui/src/app *
+recursive-exclude */static/ui/src/sass *
+recursive-exclude */static/ui/src/assets *
+
+
+global-exclude __pycache__
+global-exclude *.py[co]
