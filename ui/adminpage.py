@@ -6,7 +6,8 @@ from django.views.generic.base import TemplateView
 from ui.views import BaseView
 from django.conf import settings
 
-MVS_TEMPLATE_DIR = 'ui/mvs'
+UI_TEMPLATE_DIR = 'ui'
+MVS_TEMPLATE_DIR = UI_TEMPLATE_DIR + '/mvs'
 
 class BaseAdminPage(object):
     title = ''
@@ -57,7 +58,8 @@ class BaseAdminPage(object):
         if cls.mvs or issubclass(cls, ViewSet):
             res = res + [os.path.join(MVS_TEMPLATE_DIR,cls.__name__,'menu' + postfix)   , MVS_TEMPLATE_DIR+'/menu' + postfix]
             return res
-        return res + [cls.__name__ + postfix, 'menu' + postfix]
+        return res + [UI_TEMPLATE_DIR + '/' + cls.__name__ + postfix, UI_TEMPLATE_DIR + '/menu' + postfix]
+
 
 
     def render_menu_module(self, parent=None, context={}):

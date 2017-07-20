@@ -1,3 +1,5 @@
+__version__ = '0.1a1'
+
 from django.conf.urls import url,include
 
 from ui.exceptions import AlreadyRegistered

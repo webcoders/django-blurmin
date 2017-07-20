@@ -30,7 +30,7 @@ class MultiSelect(Autocomplete, SelectMultiple):
             for item in self.autocomplete_view.get_data()["data"]:
                 data.append({'id': item[0], 'unicode': ' '.join(item[1:])})
             _json = json.dumps(data)
-        return render_to_string('multiselect.html', {'attrs': self.attrs,
+        return render_to_string('ui/multiselect.html', {'attrs': self.attrs,
                                                      'total_count': count,
                                                      'initial_json': _json,
                                                      'name': name,
