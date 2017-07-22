@@ -38,5 +38,7 @@ class UiJSONEncoder(json.JSONEncoder):
             if o:
                 return o.path
             return ''
+        elif type(o).__name__ == '__proxy__':
+            return str(o)
         else:
             return super(UiJSONEncoder, self).default(o)

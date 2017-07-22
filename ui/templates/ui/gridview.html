@@ -90,7 +90,10 @@
                 {% endif %}
             {% endif %}
         {% endblock %}
+
+
         <div class="horizontal-scroll">
+            {% block results %}
             <table id="{{ view_name }}Table" class="{% block table_class %}table table-striped table-hover{% endblock %}">
                 <thead>
                 <tr>
@@ -157,8 +160,10 @@
                 {% endblock %}
                 </tbody>
             </table>
+           {% endblock %}
         </div>
     </div>
+    {% block pagination_bottom %}
     {% if page_obj.number %}
         <div>
             <div class="pagination pull-left">
@@ -193,6 +198,7 @@
             </div>
         </div>
     {% endif %}
+    {% endblock %}
     </div>
 {% endblock %}
 {% block extra %}

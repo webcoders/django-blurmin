@@ -8,17 +8,16 @@ from ui.models import CharField,DateField,EmailField, BooleanField,DecimalField,
 
 class Person(models.Model):
     first_name = CharField(max_length=100, verbose_name=u'First name' )
-    #mask = "(999)AAAA-(99999)"
     last_name = CharField(max_length=100, verbose_name=u'Last name', autocomplete=True)
     date = DateField(verbose_name="Date of birthday", help_text="Help text for birthday")
     email = EmailField()
+    public_email = BooleanField(verbose_name='Public email',default=False)
     age = PositiveIntegerField()
-    sex = BooleanField(verbose_name='Sex',)
-    #TODO: Cannot use choice because of absence ui_form.TypedChoiceField
-    # choices = ((False, 'Female'), (True, 'Male'))
+    skill = PositiveIntegerField(choices=((1,'Beginner'),(2,'Professional'),(3,'Expert')),default=1)
+    sex = models.CharField(choices = (('F', 'Female'), ('M', 'Male')),default='M',max_length=1)
     revenue = CurrencyField(verbose_name="Revenue (US dollars)", max_digits=10, decimal_places=2)
     page_content = RichTextField()
 
 class Phone(models.Model):
     Person = models.ForeignKey(Person)
-    phone = CharField(max_length=100, verbose_name="Phone Number")
+    phone = CharField(max_length=100, verbose_name="Phone Number",mask = "(999)999-99-99")

@@ -1,3 +1,9 @@
+def mixinFactory(name, base, mixin):
+    class _tmp(base, mixin):
+        pass
+    _tmp.__name__ = name
+    return _tmp
+
 def dictfetchall(cursor):
     "Return all rows from a cursor as a dict"
     columns = [col[0] for col in cursor.description]

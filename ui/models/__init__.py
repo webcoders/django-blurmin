@@ -26,7 +26,7 @@ class CharField(models.CharField):
 
 
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.CharField, 'mask': self.mask}
+        defaults = {'form_class': ui_forms.CharField, 'mask': self.mask , 'choices_form_class': ui_forms.TypedChoiceField }
         if self.autocomplete:
             defaults['autocomplete_view'] = self.autocomplete_class(queryset=self.model.objects.all(), search_fields=[self.name])
         defaults.update(kwargs)
@@ -34,67 +34,67 @@ class CharField(models.CharField):
 
 class DateTimeField(models.DateTimeField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.DateTimeField}
+        defaults = {'form_class': ui_forms.DateTimeField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(DateTimeField, self).formfield(**defaults)
 
 class DateField(models.DateField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.DateField}
+        defaults = {'form_class': ui_forms.DateField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(DateField, self).formfield(**defaults)
 
 class TimeField(DateTimeField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.TimeField}
+        defaults = {'form_class': ui_forms.TimeField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(TimeField, self).formfield(**defaults)
 
 class IntegerField(models.IntegerField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.IntegerField}
+        defaults = {'form_class': ui_forms.IntegerField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(IntegerField, self).formfield(**defaults)
 
 class PositiveIntegerField(models.PositiveIntegerField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.IntegerField}
+        defaults = {'form_class': ui_forms.IntegerField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(PositiveIntegerField, self).formfield(**defaults)
 
 class SmallIntegerField(models.SmallIntegerField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.IntegerField}
+        defaults = {'form_class': ui_forms.IntegerField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(SmallIntegerField, self).formfield(**defaults)
 
 class PositiveSmallIntegerField(models.PositiveSmallIntegerField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.IntegerField}
+        defaults = {'form_class': ui_forms.IntegerField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(PositiveSmallIntegerField, self).formfield(**defaults)
 
 class FloatField(models.FloatField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.FloatField}
+        defaults = {'form_class': ui_forms.FloatField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(FloatField, self).formfield(**defaults)
 
 class DecimalField(models.DecimalField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.DecimalField}
+        defaults = {'form_class': ui_forms.DecimalField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(DecimalField, self).formfield(**defaults)
 
 class EmailField(models.EmailField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.EmailField}
+        defaults = {'form_class': ui_forms.EmailField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(EmailField, self).formfield(**defaults)
 
 class URLField(models.URLField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.URLField}
+        defaults = {'form_class': ui_forms.URLField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(URLField, self).formfield(**defaults)
 
@@ -111,26 +111,26 @@ class URLField(models.URLField):
 class BooleanField(models.BooleanField):
 
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.BooleanField}
+        defaults = {'form_class': ui_forms.BooleanField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(BooleanField, self).formfield(**defaults)
 
 
 class ChoiceField(models.CharField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.ChoiceField}
+        defaults = {'form_class': ui_forms.ChoiceField, }
         defaults.update(kwargs)
         return super(ChoiceField, self).formfield(**defaults)
 
 class SlugField(models.SlugField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.SlugField}
+        defaults = {'form_class': ui_forms.SlugField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(SlugField, self).formfield(**defaults)
 
 class ForeignKey(models.ForeignKey):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.ModelChoiceField}
+        defaults = {'form_class': ui_forms.ModelChoiceField }
         defaults.update(kwargs)
         return super(ForeignKey, self).formfield(**defaults)
 
@@ -140,7 +140,7 @@ class TextField(models.TextField):
 
 class RichTextField(models.TextField):
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.RichTextField}
+        defaults = {'form_class': ui_forms.RichTextField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(RichTextField, self).formfield(**defaults)
 
@@ -149,7 +149,7 @@ class CurrencyField(models.DecimalField):
     def __init__(self, *args, **kwargs):
         super(CurrencyField, self).__init__(*args, **kwargs)
     def formfield(self, **kwargs):
-        defaults = {'form_class': ui_forms.CurrencyField}
+        defaults = {'form_class': ui_forms.CurrencyField, 'choices_form_class': ui_forms.TypedChoiceField }
         defaults.update(kwargs)
         return super(CurrencyField, self).formfield(**defaults)
 
